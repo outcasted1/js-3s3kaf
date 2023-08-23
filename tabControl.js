@@ -3,7 +3,7 @@ $('.customTab .tabheaditems  .ui-tabs-anchor');
 $('.customTab .tabpanelitems  .clcontrol-form');
 $('.customTab .button_style');
 $('.customTab .tabpanelitems input').eq(0);
-
+/*/****************************************************** */
 $(document).ready(function () {
   $('.customTab .button_style').on('click', function () {
     debugger;
@@ -17,10 +17,11 @@ $(document).ready(function () {
     $('.customTab .tabpanelitems input').eq(1).val('');
   });
 });
-
-function setAttrValues(controlID, attribute, value) {
-  var elements = $('.customTab .tabheaditems  .ui-tabs-anchor');
+//**************************************************/
+function setAttrValues(attribute, value) {
+  var elements = $('.customTab .tabheaditems .ui-tabs-anchor');
   elements.each(function () {
     $(this).attr(attribute, value);
   });
 }
+//*******************************************************/
