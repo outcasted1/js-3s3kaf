@@ -51,15 +51,16 @@ setAttrValues('tabHeader1', 'color', 'red', 'tabHeader2', 'color', 'blue', 'tabH
 //***************************************** /
 
 function setAttrValues(...args) {
-  $('.customTab .tabheaditems li').addClass('tabHeaders');  
-  for (var i = 0; i < args.length; i += $('.tabHeaders').length) {
-    var elementIndex = args[i];
-    var attribute = args[i + 1];
-    var value = args[i + 2];  
-    var elements = $('.tabHeaders').eq(elementIndex);
-    elements.each(function () {
-      $(this).attr(attribute, value);
-    });
-  }
+  debugger;
+$('.customTab .tabheaditems li').addClass('tabHeaders');  
+for (var i = 0; i < args.length; i += $('.tabHeaders').length) {
+  var elementIndex = args[i];
+  var attribute = args[i + 1];
+  var value = args[i + 2];  
+  var elements = $('.tabHeaders').eq(elementIndex);
+  elements.each(function () {
+    $(this).attr(attribute, value);
+  });
+}
 }
 setAttrValues(0, 'color', 'red', 1, 'color', 'blue', 2, 'color', 'green');
