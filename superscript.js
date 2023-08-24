@@ -182,3 +182,21 @@ function superScript() {
 function applySuperScriptStyle() {
   $('.superScript').css('font-family', 'Segoe UI Symbol');
 }
+
+
+
+
+function containsUnicodeCharacters(controlID) {
+  debugger;
+  const radioButtons = $('#' + controlID + ' table tbody tr td');
+
+  for (let i = 0; i < radioButtons.length; i++) {
+    const text = radioButtons.eq(i).text();
+    const hasUnicodeCharacters = /[^\x00-\x7F]+/.test(text);
+
+    if (hasUnicodeCharacters) {
+      radioButtons.eq(i).find('span span').addClass('reqWord');
+      superScript();
+    }
+  }
+}
