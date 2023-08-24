@@ -128,9 +128,9 @@ $(document).ready(function () {
       const hasUnicodeCharacters = /[^\x00-\x7F]+/.test(text);
       if (hasUnicodeCharacters) {
         elements.eq(i).find('span span').addClass('reqWord');
-        superScript();        
+        superScript();
       }
-    }    
+    }
   }
   function superScript() {
     $('.reqWord').each(function () {
@@ -145,7 +145,40 @@ $(document).ready(function () {
         .append(wordsString + newHTML);
     });
     $('.superScript').css('font-family', 'Segoe UI Symbol');
-  } 
+  }
 });
 //** */
 //**************************************************************** */
+
+function containsUnicodeCharacters() {
+  const headers = $('.myControl table tbody tr td');
+
+  for (let i = 0; i < headers.length; i++) {
+    const text = headers.eq(i).text();
+    const hasUnicodeCharacters = /[^\x00-\x7F]+/.test(text);
+
+    if (hasUnicodeCharacters) {
+      headers.eq(i).find('span span').addClass('reqWord');
+      superScript();
+    }
+  }
+}
+
+function superScript() {
+  $('.reqWord').each(function () {
+    var text = $(this).text();
+    var pattern = new RegExp('[a-zA-Z0-9]+|\\s+', 'g');
+    var words = text.match(pattern);
+    var wordsString = words.join(' ').trim();
+    var superText = text.replace(/[a-zA-Z0-9\s]+/g, '');
+    var newHTML = '<span class="superScript">' + superText + '</span>';
+    $(this)
+      .empty()
+      .append(wordsString + newHTML);
+  });
+  applySuperScriptStyle();
+}
+
+function applySuperScriptStyle() {
+  $('.superScript').css('font-family', 'Segoe UI Symbol');
+}
