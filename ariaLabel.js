@@ -99,18 +99,20 @@ function checkForYesValues(radioControlID, labelControlID) {
   var radioGroup = $('#' + radioControlID + ' table tbody tr td');
   for (var i = 0; i < radioGroup.length; i++) {
     var radioInput = $(radioGroup[i]).find('span input[type="radio"]:checked');
-    var labelValue= $('#' + labelControlID).text(); 
+    var labelValue = $('#' + labelControlID).text();
     if (radioInput.length > 0) {
       var radioLabelText = $(radioGroup[i]).find('span span').text();
       var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
-      $('#' + labelControlID).attr('aria-label','Receive text alert on ' + labelValue + ' ' + alertValue);
+      $('#' + labelControlID).attr(
+        'aria-label',
+        'Receive text alert on ' + labelValue + ' ' + alertValue
+      );
     }
   }
 }
 checkForYesValues('radioControlID', 'labelControlID');
 
 //*************************************************************** */
-
 function checkForYesValues(radioControlID, labelControlID) {
   var radioGroup = $('#' + radioControlID + ' table tbody tr td');
   for (var i = 0; i < radioGroup.length; i++) {
@@ -118,20 +120,142 @@ function checkForYesValues(radioControlID, labelControlID) {
     var labelValue = $('#' + labelControlID).text();
     if (radioInput.length > 0) {
       var radioLabelText = $(radioGroup[i]).find('span span').text();
-      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';      
+      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
       // Check if labelValue is a phone number or an email address
-      var isPhoneNumber = /^\d{10}$/.test(labelValue); 
-      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);      
+      var isPhoneNumber = /^\d{10}$/.test(labelValue);
+      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);
+      var alertMessage = '';
+      if (isPhoneNumber) {
+        alertMessage = 'Receive text alert on ' + labelValue + ' ' + alertValue;
+      } else if (isEmailAddress) {
+        alertMessage =
+          'Receive email alert on ' + labelValue + ' ' + alertValue;
+      } else {
+        // Handle other cases if needed
+      }
+      $('#' + labelControlID).attr('aria-label', alertMessage);
+    }
+  }
+}
+//******************************************************************************************** */
+function checkForYesValues(radioControlID, labelControlID) {
+  debugger;
+  var radioGroup = $('#' + radioControlID + ' table tbody tr td');
+  var input = $(radioGroup).find('span input[type="radio"]:checked');
+  for (var i = 0; i < radioGroup.length; i++) {
+    var radioInput = $(radioGroup[i]).find('span input[type="radio"]:checked');
+    var labelValue = $('#' + labelControlID).text();
+    if (radioInput.length > 0) {
+      var radioLabelText = $(radioGroup[i]).find('span span').text();
+      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
+      // Check if labelValue is a phone number or an email address
+      var isPhoneNumber = /^\d{10}$/.test(labelValue);
+      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);
+      var alertMessage = '';
+      if (isPhoneNumber) {
+        alertMessage = 'Receive text alert on ' + labelValue + ' ' + alertValue;
+      } else if (isEmailAddress) {
+        alertMessage =
+          'Receive email alert on ' + labelValue + ' ' + alertValue;
+      } else {
+      }
+      $(input).attr('aria-label', alertMessage);
+    }
+  }
+}
+/*$('.myControl table tbody tr td')
+  .find('span input[type="radio"]:checked')
+  .attr('aria-label', 'Hello');*/
+//***************************************************************************************** */
+function checkForYesValues(radioControlID, labelControlID) {
+  var radioGroup = $('#' + radioControlID + ' table tbody tr td');
+  var checkedInput = $(radioGroup).find('span input[type="radio"]:checked');
+  var unCheckedInput = $(radioGroup).find(
+    'span input[type="radio"]:not(:checked)'
+  );
+
+  for (var i = 0; i < radioGroup.length; i++) {
+    var radioInput = $(radioGroup[i]).find('span input[type="radio"]:checked');
+    var labelValue = $('#' + labelControlID).text();
+
+    if (radioInput.length > 0) {
+      var radioLabelText = $(radioGroup[i]).find('span span').text();
+      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
+
+      var isPhoneNumber = /^\d{10}$/.test(labelValue);
+      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);
+      debugger;
+      var alertMessage = '';
+      if (isPhoneNumber) {
+        alertMessage = 'Receive text alert on ' + labelValue + ' ' + alertValue;
+      } else if (isEmailAddress) {
+        alertMessage =
+          'Receive email alert on ' + labelValue + ' ' + alertValue;
+      }
+
+      $(unCheckedInput).removeAttr('aria-label');
+      $(checkedInput).attr('aria-label', alertMessage);
+    }
+  }
+}
+/********************************************************************* */
+function checkForYesValues(radioControlID, labelControlID) {
+  var radioGroup = $('#' + radioControlID + ' table tbody tr td');
+  var unCheckedInput = $(radioGroup).find(
+    'span input[type="radio"]:not(:checked)'
+  );
+
+  for (var i = 0; i < radioGroup.length; i++) {
+    var radioInput = $(radioGroup[i]).find('span input[type="radio"]:checked');
+    var labelValue = $('#' + labelControlID).text();
+
+    if (radioInput.length > 0) {
+      var radioLabelText = $(radioGroup[i]).find('span span').text();
+      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
+
+      var isPhoneNumber = /^\d{10}$/.test(labelValue);
+      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);
+
+      var alertMessage = '';
+      if (isPhoneNumber) {
+        alertMessage = 'Receive text alert on ' + labelValue + ' ' + alertValue;
+      } else if (isEmailAddress) {
+        alertMessage =
+          'Receive email alert on ' + labelValue + ' ' + alertValue;
+      }
+
+      $(unCheckedInput).removeAttr('aria-label');
+      $(radioInput).attr('aria-label', alertMessage);
+    }
+  }
+}
+/******************************************************************* */
+function checkForYesValues(radioControlID, labelControlID) {
+  var radioGroup = $('#' + radioControlID + ' table tbody tr td');
+  var unCheckedInput = $(radioGroup).find('span input[type="radio"]:not(:checked)'
+  );
+
+  for (var i = 0; i < radioGroup.length; i++) {
+    var radioInput = $(radioGroup[i]).find('span input[type="radio"]:checked');
+    var labelValue = $('#' + labelControlID).text();
+
+    if (radioInput.length > 0) {
+      var radioLabelText = $(radioGroup[i]).find('span span').text();
+      var alertValue = radioLabelText === 'Yes' ? 'true' : 'false';
+    
+      var isPhoneNumber = /^\d{10}$/.test(labelValue);
+      var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(labelValue);
+
       var alertMessage = '';
       if (isPhoneNumber) {
         alertMessage = 'Receive text alert on ' + labelValue + ' ' + alertValue;
       } else if (isEmailAddress) {
         alertMessage = 'Receive email alert on ' + labelValue + ' ' + alertValue;
-      } else {
-        // Handle other cases if needed
-      }      
-      $('#' + labelControlID).attr('aria-label', alertMessage);
+      }
+      $(radioInput).attr('aria-label', alertMessage);
+    } else {
+      $(unCheckedInput).removeAttr('aria-label');
     }
   }
 }
-//***************************************************************************************** */
+//**************************************************************************** */
