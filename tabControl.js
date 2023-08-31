@@ -88,3 +88,40 @@ function setAttrValues(controlID, ...args) {
     });
   }
 }
+//************************************************************************************* */
+
+
+
+function tabHeaderValues(controlID) {
+  debugger;
+    const tabHeaders = $('#' + controlID + '_TabHead ul li .ui-tabs-anchor');
+   var tabindex = 1;
+   tabHeaders .each(function () {
+      var $input = $(this);
+      $input.attr('tabindex', tabindex);
+      tabindex++;
+    });
+
+function updateTabHeaderValues(controlID, headerValues) {
+  debugger;
+  const tabHeaders = $('#' + controlID + '_TabHead ul li .ui-tabs-anchor');
+  var tabindex = 1;
+  tabHeaders .each(function () {
+     var $input = $(this);
+     $input.attr('tabindex', tabindex);
+     tabindex++;
+   });
+   debugger;
+  var headerArray = headerValues.split(';'); 
+  $.each(headerArray, function (index, value) {
+    var parts = value.split(':');
+    var tabNumber = parts[0];
+    var headerText = parts[1];   
+   var initialText =  $('#' + controlID + ' ul li:nth-child(' + tabNumber + ') .ui-tabs-anchor').text();
+   var finalText = initialText+' '+ headerText;
+    $('#' + controlID + ' ul li:nth-child(' + tabNumber + ') .ui-tabs-anchor').text(finalText);
+  });
+}
+
+
+updateTabHeaderValues("yourTabControlID", "1:New Tab 1;2:Updated Tab 2;3:Modified Tab 3;");
