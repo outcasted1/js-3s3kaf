@@ -1,5 +1,9 @@
 $('.myControl table tbody tr td:eq(1) span span ');
-
+/*.superScript {
+    font-family: 'Segoe UI Symbol';
+    font-size: 15px !important;
+    font-weight: normal !important;
+      }*/
 $(document).ready(function () {
   $('.myControl table tbody tr td:eq(1) span span').addClass('reqWord');
 });
@@ -200,7 +204,6 @@ function containsUnicodeCharacters(controlID) {
 }
 //********************************************************************** */
 
-
 function containsUnicodeCharacters(controlID) {
   const radioButtons = $('#' + controlID + ' table tbody tr td');
 
@@ -216,7 +219,6 @@ function containsUnicodeCharacters(controlID) {
 }
 
 function superScript() {
-
   $('.reqWord').each(function () {
     var text = $(this).text();
     var pattern = new RegExp('[a-zA-Z0-9]+|\\s+', 'g');
