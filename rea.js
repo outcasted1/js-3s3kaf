@@ -49,3 +49,6 @@ function updateTabHeaderValues() {
   });
   $('.tabInput').val('');
 }
+//********************************************************************** */
+
+$(this).attr("aria-label", "Set Time for text alerts to Phone number [Recipient]");

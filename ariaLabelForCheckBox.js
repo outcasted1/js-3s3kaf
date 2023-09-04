@@ -137,3 +137,38 @@ function checkBoxValues(tableControlID) {
     checkBoxInput.attr('aria-label', alertMessage);
   });
 }
+//************************************************************************ */
+
+function checkBoxValues(tableControlID,columnIndex) {
+
+  var checkBoxRows = $('#' + tableControlID + ' .fixedTable table tbody tr');
+
+  checkBoxRows.each(function() {
+  var index = parseInt(columnIndex);
+
+    var checkBoxInput = $(this).find('td input[type="checkbox"]');
+   var tableText = $(this).find('td div:eq(' + index + ')').text().trim();
+
+
+    var isPhoneNumber =/^\(\d{3}\) \d{3}-\d{4}$|^\d{3}-\d{3}-\d{4}$/.test(tableText);
+    var isEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(tableText);
+
+    var alertMessage = '';
+
+    if (checkBoxInput.prop('checked')) {
+      if (isPhoneNumber) {
+        alertMessage = 'Text ' + tableText + ' is checked';
+      } else if (isEmailAddress) {
+        alertMessage = 'Email ' + tableText + ' is checked';
+      }
+    } else {
+      if (isPhoneNumber) {
+        alertMessage = 'Text ' + tableText + ' is unchecked';
+      } else if (isEmailAddress) {
+        alertMessage = 'Email ' + tableText + ' is unchecked';
+      }
+    }
+
+    checkBoxInput.attr('aria-label', alertMessage);
+  });
+}
