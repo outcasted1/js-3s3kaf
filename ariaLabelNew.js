@@ -1,4 +1,4 @@
-function editButton(tableControlID, targetColumnIndex, targetLabelIndex) {
+function editButton(tableControlID, targetLabelIndex, targetColumnIndex) {
   debugger;
   var editButtonRows = $('#' + tableControlID + ' .fixedTable table tbody tr');
 
@@ -27,4 +27,5 @@ function editButton(tableControlID, targetColumnIndex, targetLabelIndex) {
     editButton.attr('aria-label', alertMessage);
   });
 }
-$('#G4680_F0_466 .fixedTable table tbody tr').find('td a').eq(index);
+$('.myTable .fixedTable table tbody tr:eq(0)').find('td:eq(4) a');
+$('.myTable .fixedTable table tbody tr:eq(0) td:eq(5) a');
